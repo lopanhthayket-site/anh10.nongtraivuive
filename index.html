@@ -329,6 +329,78 @@ color:#5d8d48;
 
 }
 
+
+.pig-bank{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+margin:10px 0 14px;
+
+padding:8px 14px;
+
+border-radius:999px;
+
+background:rgba(255,192,203,.18);
+
+border:1px solid rgba(255,182,193,.4);
+
+font-weight:800;
+
+font-size:17px;
+
+color:#d14a7b;
+
+width:fit-content;
+
+margin-left:auto;
+
+margin-right:auto;
+
+box-shadow:
+
+0 3px 10px rgba(255,105,180,.15);
+
+}
+
+.pig-icon{
+
+font-size:28px;
+
+animation:pigJump 2s infinite;
+
+}
+
+.coin{
+
+color:#f2b600;
+
+font-size:18px;
+
+}
+
+@keyframes pigJump{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-3px);
+
+}
+
+}
+
+
 /*=========================
 CLOUDS
 ==========================*/
@@ -663,29 +735,28 @@ BIRD
 
 <script>
 
-const MAX = 150;
+const MAX = 170;
 
 const students=[
 
-{name:"Ly",score:32},
 
-{name:"Khang",score:36},
+{name:"Ly",score:58,pig:0},
 
-{name:"Bưởi",score:34},
+{name:"Khang",score:78,pig:0},
 
-{name:"Nguyên",score:34},
+{name:"Bưởi",score:66,pig:0},
 
-{name:"Thịnh",score:24},
-
+{name:"Nguyên",score:55,pig:0},
 
 ];
+
 function tree(score){
 
     if(score < 50) return "🌱";
 
     if(score < 100) return "🌿";
 
-    if(score < 150) return "🌳🌸";
+    if(score < 170) return "🌳🌸";
 
     return "🌳🍎";
 
@@ -697,7 +768,7 @@ function level(score){
 
     if(score < 100) return "Cây non";
 
-    if(score < 150) return "Đã ra hoa 🌸";
+    if(score < 170) return "Đã ra hoa 🌸";
 
     return "Đã ra quả 🍎";
 
@@ -718,6 +789,16 @@ farm.innerHTML+=`
 
 <div class="name">Hộ ${i+1}<br>${s.name}</div>
 
+<div class="pig-bank">
+
+<span class="pig-icon">🐷</span>
+
+<span class="coin">🪙</span>
+
+${s.pig.toLocaleString()}
+
+</div>
+
 <div class="tree">${tree(s.score)}</div>
 
 <div class="progress">
@@ -725,6 +806,7 @@ farm.innerHTML+=`
 <div class="bar" data-width="${percent}%"></div>
 
 </div>
+
 
 <div class="score">${s.score} / ${MAX}</div>
 
